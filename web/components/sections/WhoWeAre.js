@@ -8,12 +8,16 @@ import Section from "../Section";
 import SimpleBlockContent from "../SimpleBlockContent";
 import MotionBox from "../MotionBox";
 import {IntersectionObserver} from "../IntersectionObserver";
+import styled from "styled-components";
 
 const Img = styled.img`
   margin-bottom: 53px;
 `
+function urlFor(source) {
+  return imageUrlBuilder(client).image(source)
+}
 
-function WhoWeAre({title, description, background, cta}) {
+function WhoWeAre({title, description, background, button}) {
   return (
     <Section backgroundColor="#27324F" id="woweare">
       <IntersectionObserver id="woweare">
@@ -26,7 +30,7 @@ function WhoWeAre({title, description, background, cta}) {
                   <SimpleBlockContent blocks={description} />
                 </Text>
                 <Img src={urlFor(background).auto('format').fit('max').toString()} alt=""/>
-                <Cta {...cta} />
+                <Cta {...button} />
               </Col>
             </Row>
           </Container>
@@ -39,6 +43,8 @@ function WhoWeAre({title, description, background, cta}) {
 WhoWeAre.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
+  background: PropTypes.object,
+  button: PropTypes.obkect
 }
 
 export default WhoWeAre
