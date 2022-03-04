@@ -14,7 +14,17 @@ export default {
       title: 'Background image',
       options: {
         hotspot: true,
-      },
+      }
     },
+    {
+      name:'innerListItems',
+      type:'array',
+      of:[
+        {
+          title:'listItem',
+          type:'string'
+        }
+      ]
+    }
   ]
 }

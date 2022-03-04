@@ -8,12 +8,8 @@ import Section from "../Section";
 import SimpleBlockContent from "../SimpleBlockContent";
 import MotionBox from "../MotionBox";
 import {IntersectionObserver} from "../IntersectionObserver";
-import styled from "styled-components";
 import client from '../../client'
 
-const Img = styled.img`
-  margin-bottom: 53px;
-`
 function urlFor(source) {
   return imageUrlBuilder(client).image(source)
 }
@@ -25,13 +21,14 @@ function WhoWeAre({title, description, background, button}) {
         <MotionBox>
           <Container>
             <Row>
-              <Col md={6}>
-                <Heading size="sm" bold color="white" style={{marginBottom: 46}}>{title}</Heading>
+              <Col lg={{order:'first',span:6}} xs={12}>
+                <Heading size="sm" bold color="white">{title}</Heading>
                 <Text color="white" size="md">
                   <SimpleBlockContent blocks={description} />
                 </Text>
-                <Img src={urlFor(background).auto('format').fit('max').toString()} alt=""/>
                 <Cta {...button} />
+              </Col>
+              <Col lg={{order:'last',span:6}} xs={{order:'first',span:12}} style={{backgroundImage:urlFor(background).auto('format').fit('max').toString()}}>
               </Col>
             </Row>
           </Container>
@@ -45,7 +42,7 @@ WhoWeAre.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
   background: PropTypes.object,
-  button: PropTypes.obkect
+  button: PropTypes.object
 }
 
 export default WhoWeAre
