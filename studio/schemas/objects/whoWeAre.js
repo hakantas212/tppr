@@ -16,7 +16,7 @@ export default {
     {
       title: 'Background',
       name:'background',
-      type:'Image'
+      type:'image'
     }
   ]
 }
