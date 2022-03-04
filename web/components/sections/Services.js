@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {Col, Container, ListGroup, Row} from 'react-bootstrap'
+import {Col, Container, Row} from 'react-bootstrap'
 import styled from 'styled-components'
 import {Heading, Text} from '../typography'
 import Section from '../Section'
@@ -73,12 +73,11 @@ function Services({title, items}) {
                         </Text>
                         {item.innerListItems && <ul style={{listStyle:'none',marginTop:'1rem'}}>
                           {item.innerListItems?.map((_item, index) => (
-                            <li>
+                            <li key={`inneritem-${index}-${_item}`}>
                               <Text
                                 size="sm"
                                 bold
                                 color="white"
-                                key={`inneritem-${index}-${_item}`}
                               >
                                 {_item}
                               </Text>
