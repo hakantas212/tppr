@@ -55,13 +55,13 @@ function ContactUs({title, email, phone, media}) {
                 <Text className="mb-4" color="#A0A3BD">{phone}</Text>
               </Link>
               <SocialMediaList>
-                {media.map((entity) => (
+                {media ?  media.map((entity) => (
                   <li key={entity._key}>
                     <a href={entity.link} target="_blank" rel="noreferrer">
                       <img src={urlFor(entity.image).auto('format').fit('max').toString()} alt={entity.title} />
                     </a>
                   </li>
-                ))}
+                )): ""}
               </SocialMediaList>
             </Col>
             <Col lg={4}>
