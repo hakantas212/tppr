@@ -17,6 +17,11 @@ export default {
       title: 'Background',
       name:'background',
       type:'image'
+    },
+    {
+      title:'Button',
+      name:'button',
+      type:'cta'
     }
   ]
 }

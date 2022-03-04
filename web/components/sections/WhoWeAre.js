@@ -2,12 +2,18 @@ import React from "react";
 import PropTypes from "prop-types";
 import {Col, Container, Row} from "react-bootstrap";
 import {Heading, Text} from "../typography";
+import imageUrlBuilder from '@sanity/image-url'
+import Cta from '../Cta'
 import Section from "../Section";
 import SimpleBlockContent from "../SimpleBlockContent";
 import MotionBox from "../MotionBox";
 import {IntersectionObserver} from "../IntersectionObserver";
 
-function WhoWeAre({title, description}) {
+const Img = styled.img`
+  margin-bottom: 53px;
+`
+
+function WhoWeAre({title, description, background, cta}) {
   return (
     <Section backgroundColor="#27324F" id="woweare">
       <IntersectionObserver id="woweare">
@@ -19,6 +25,8 @@ function WhoWeAre({title, description}) {
                 <Text color="white" size="md">
                   <SimpleBlockContent blocks={description} />
                 </Text>
+                <Img src={urlFor(background).auto('format').fit('max').toString()} alt=""/>
+                <Cta {...cta} />
               </Col>
             </Row>
           </Container>
