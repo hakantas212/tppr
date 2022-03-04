@@ -5,6 +5,7 @@ import {Col, Container, Row} from "react-bootstrap";
 import SVG from "react-inlinesvg";
 import Section from "./Section";
 import {Text} from "./typography";
+import Style from './Footer.module.css'
 
 function Footer({logo}) {
   const renderLogo = (logo) => {
@@ -22,9 +23,9 @@ function Footer({logo}) {
   return (
     <Section backgroundColor="#27324F">
       <Container>
-        <Row>
-          <Col>{renderLogo(logo)}</Col>
-          <Col className="text-end">
+        <Row className={Style.footerRow}>
+          <Col md={6} xs={12}>{renderLogo(logo)}</Col>
+          <Col md={6} xs={12} className={Style.reservedContainer}>
             <Text size="md" color="white">All rights reserved.</Text>
           </Col>
         </Row>

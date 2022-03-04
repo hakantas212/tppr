@@ -36,3 +36,18 @@
     color: inherit;
   }
 }
+
+.reservedContainer{
+  text-align: right;
+}
+
+@media only screen and (max-width: 770px) {
+  .reservedContainer{
+    margin-top:1rem;
+    text-align: center;
+  }
+  
+  .footerRow{
+    text-align: center;
+  }
+}

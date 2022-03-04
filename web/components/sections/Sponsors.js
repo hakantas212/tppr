@@ -59,7 +59,7 @@ function Sponsors({title, items}) {
           <Col xs={12}>
             <Heading size="sm" bold textAlign="center" style={{marginBottom: 55}}>{title}</Heading>
           </Col>
-          <Col xs={12}>
+          <Col xs={{offset:1,span:10}} sm={{offset:0,span:12}}>
             <Slider {...settings}>
               {
                 items.map((item) => (

@@ -43,10 +43,10 @@ function ContactUs({title, email, phone, media}) {
             <Col xs={12}>
               <Heading size="sm" bold style={{marginBottom: 64}}>{title}</Heading>
             </Col>
-            <Col lg={4} className="mb-5 mb-lg-0">
+            <Col lg={{order:1,span:4}} xs={{order:3,span:12}} className="mb-5 mb-lg-0">
               <img className="w-100" src="contact_us.png" alt="contact_us"/>
             </Col>
-            <Col lg={4} className="text-center mb-5 mb-lg-0">
+            <Col lg={{order:2,span:4}} xs={{order:4,span:12}} className="text-center mb-5 mb-lg-0">
               <Img src="hero_logo.svg" alt="hero_logo"/>
               <Link href={`mailto:${email}`}>
                 <Text className="mb-4" color="#A0A3BD">{email}</Text>
@@ -64,7 +64,7 @@ function ContactUs({title, email, phone, media}) {
                 )): ""}
               </SocialMediaList>
             </Col>
-            <Col lg={4}>
+            <Col lg={4} xs={{order:2,span:12}}>
               <Form>
                 <Form.Group className="mb-4" controlId="formBasicName">
                   <Form.Control type="text" size="lg" placeholder="Name" />
@@ -79,7 +79,7 @@ function ContactUs({title, email, phone, media}) {
                 </Form.Group>
 
                 <div className="d-grid gap-2">
-                  <Button variant="primary" type="submit" size="lg" className="text-white">
+                  <Button variant="primary" type="submit" size="lg" className="text-white" style={{marginBottom:'1rem'}}>
                     Submit
                   </Button>
                 </div>
