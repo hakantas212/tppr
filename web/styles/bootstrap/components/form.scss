@@ -1,0 +1,37 @@
+.form-control, .form-control:focus {
+  color: #A0A3BD !important;
+  background-color: #EFF0F6;
+  border-color: transparent;
+  border-radius: 16px;
+  padding: 14px 24px;
+  font-size: 16px;
+  line-height: 28px;
+  letter-spacing: 0.75px;
+  box-shadow: none;
+}
+
+::placeholder {
+  color: #A0A3BD !important;
+}
+
+::-webkit-input-placeholder {
+  color: #A0A3BD !important;
+}
+
+:-moz-placeholder {
+  opacity: 1;
+  color: #A0A3BD !important;
+}
+
+::-moz-placeholder {
+  opacity: 1;
+  color: #A0A3BD !important;
+}
+
+:-ms-input-placeholder {
+  color: #A0A3BD !important;
+}
+
+::-ms-input-placeholder {
+  color: #A0A3BD !important;
+}

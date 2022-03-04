@@ -1,106 +1,143 @@
-import React, {Component} from 'react'
+import React, {useContext, useState} from 'react'
 import PropTypes from 'prop-types'
-import Link from 'next/link'
 import {withRouter} from 'next/router'
+import styled from "styled-components";
 import SVG from 'react-inlinesvg'
-import styles from './Header.module.css'
-import HamburgerIcon from './icons/Hamburger'
-import {getPathFromSlug, slugParamToPath} from '../utils/urls'
+import {Button, Container, Nav, Navbar} from "react-bootstrap";
+import {useWindowScroll} from "react-use";
+import {jump} from "../utils/jump";
+import {GlobalContext} from "./GlobalStore";
 
-class Header extends Component {
-  state = {showNav: false}
+const BurgerButtonWrapper = styled.div`
+  position: relative;
+  width: 35px;
+  height: 35px;
+`
 
-  static propTypes = {
-    router: PropTypes.shape({
-      pathname: PropTypes.string,
-      query: PropTypes.shape({
-        slug: PropTypes.string,
-      }),
-      events: PropTypes.any,
-    }),
-    title: PropTypes.string,
-    navItems: PropTypes.arrayOf(
-      PropTypes.shape({
-        title: PropTypes.string.isRequired,
-        slug: PropTypes.arrayOf(PropTypes.string),
-      })
-    ),
-    logo: PropTypes.shape({
-      asset: PropTypes.shape({
-        url: PropTypes.string,
-      }),
-      logo: PropTypes.string,
-    }),
+const BurgerButton = styled(Button)`
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 35px;
+  height: 35px;
+`
+
+const BurgerButtonIcon = styled.div`
+  cursor: pointer;
+  border-radius: 1px;
+  height: 2px;
+  width: 35px;
+  background: white;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  display: block;
+  content: '';
+
+  &:before, &:after {
+    cursor: pointer;
+    border-radius: 1px;
+    height: 2px;
+    width: 35px;
+    background: white;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    display: block;
+    content: '';
+    transition: all 0.5s ease-in-out;
   }
 
-  componentDidMount() {
-    const {router} = this.props
-    router.events.on('routeChangeComplete', this.hideMenu)
+  &:before {
+    top: -10px;
   }
 
-  componentWillUnmount() {
-    const {router} = this.props
-    router.events.off('routeChangeComplete', this.hideMenu)
+  &:after {
+    top: 10px;
   }
 
-  hideMenu = () => {
-    this.setState({showNav: false})
-  }
+  ${({open}) => open && `
+    background: transparent;
+    &::before,
+    &::after {
+      top: 0;
+    }
+    &::after {
+      transform: rotate(-135deg);
+    }
+    &::before {
+      transform: rotate(135deg);
+    }
+  `}
+`
 
-  handleMenuToggle = () => {
-    const {showNav} = this.state
-    this.setState({
-      showNav: !showNav,
-    })
-  }
+function Header({router, title, navItems, logo}) {
+  const [open, setOpen] = useState(false);
+  const {state} = useContext(GlobalContext);
+  const {y} = useWindowScroll();
 
-  renderLogo = (logo) => {
+  const renderLogo = (logo) => {
     if (!logo || !logo.asset) {
       return null
     }
 
     if (logo.asset.extension === 'svg') {
-      return <SVG src={logo.asset.url} className={styles.logo} />
+      return <SVG src={logo.asset.url} />
     }
 
-    return <img src={logo.asset.url} alt={logo.title} className={styles.logo} />
+    return <img src={logo.asset.url} alt={logo.title} />
   }
 
-  render() {
-    const {title = 'Missing title', navItems, router, logo} = this.props
-    const {showNav} = this.state
+  return (
+      <Navbar className="p-0 m-0" expand="lg" expanded={open} bg={y > 100 && "dark"}>
+        <Container>
+          <Navbar.Brand href="#" onClick={(e) => {
+            e.preventDefault();
+            jump("__next");
+          }}
+          >{renderLogo(logo)}</Navbar.Brand>
+          <BurgerButtonWrapper className="d-lg-none d-block">
+            <BurgerButton variant="link" className="position-absolute" onClick={() => setOpen(!open)}>
+              <BurgerButtonIcon open={open} />
+            </BurgerButton>
+          </BurgerButtonWrapper>
+          <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
+            <Nav>
+              <Nav.Link active={state.id === "home" && state.inView} href="#" onClick={() => jump("__next")}>Home</Nav.Link>
+              <Nav.Link href="#" active={state.id === "specialisations" && state.inView} onClick={() => jump("specialisations")}>Specialisations</Nav.Link>
+              <Nav.Link href="#" active={state.id === "services" && state.inView} onClick={() => jump("services")}>Services</Nav.Link>
+              <Nav.Link href="#" active={state.id === "woweare" && state.inView} onClick={() => jump("woweare")}>Who We Are?</Nav.Link>
+              <Button variant="primary" active={state.id === "contactus" && state.inView} onClick={() => jump("contactus")}>Contact Us</Button>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+  )
+}
 
-    return (
-      <div className={styles.root} data-show-nav={showNav}>
-        <h1 className={styles.branding}>
-          <Link href={'/'}>
-            <a title={title}>{this.renderLogo(logo)}</a>
-          </Link>
-        </h1>
-        <nav className={styles.nav}>
-          <ul className={styles.navItems}>
-            {navItems &&
-              navItems.map((item) => {
-                const {slug, title, _id} = item
-                const isActive = slugParamToPath(router.query.slug) === slug.current
-                return (
-                  <li key={_id} className={styles.navItem}>
-                    <Link href={getPathFromSlug(slug.current)}>
-                      <a data-is-active={isActive ? 'true' : 'false'} aria-current={isActive}>
-                        {title}
-                      </a>
-                    </Link>
-                  </li>
-                )
-              })}
-          </ul>
-          <button className={styles.showNavButton} onClick={this.handleMenuToggle}>
-            <HamburgerIcon className={styles.hamburgerIcon} />
-          </button>
-        </nav>
-      </div>
-    )
-  }
+Header.propTypes = {
+  router: PropTypes.shape({
+    pathname: PropTypes.string,
+    query: PropTypes.shape({
+      slug: PropTypes.string,
+    }),
+    events: PropTypes.any,
+  }),
+  title: PropTypes.string,
+  navItems: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      slug: PropTypes.arrayOf(PropTypes.string),
+    })
+  ),
+  logo: PropTypes.shape({
+    asset: PropTypes.shape({
+      url: PropTypes.string,
+      extension: PropTypes.string,
+    }),
+    logo: PropTypes.string,
+    title: PropTypes.string,
+  }),
 }
 
 export default withRouter(Header)

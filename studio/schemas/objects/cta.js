@@ -30,8 +30,7 @@ export default {
     {
       title: 'External link',
       name: 'link',
-      type: 'url',
-      fieldset: 'link',
+      type: 'string',
     },
   ],
   preview: {

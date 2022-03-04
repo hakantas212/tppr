@@ -26,6 +26,11 @@ export default {
         { type: 'imageSection' },
         { type: 'mailchimp' },
         { type: 'textSection' },
+        { type: 'services' },
+        { type: 'specialisations' },
+        { type: 'whoWeAre' },
+        { type: 'sponsors' },
+        { type: 'contactUs' },
       ],
     },
     {

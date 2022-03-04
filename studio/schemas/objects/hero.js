@@ -14,6 +14,14 @@ export default {
       title: 'Tagline',
     },
     {
+      name: 'image',
+      type: 'image',
+      title: 'Hero Image',
+      options: {
+        hotspot: true,
+      },
+    },
+    {
       name: 'backgroundImage',
       type: 'image',
       title: 'Background image',

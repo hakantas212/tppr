@@ -23,6 +23,15 @@ import hero from './objects/hero';
 import imageSection from './objects/imageSection';
 import mailchimp from './objects/mailchimp';
 import textSection from './objects/textSection';
+import services from './objects/services';
+import service from './objects/service';
+import specialisations from './objects/specialisations';
+import specialisation from './objects/specialisation';
+import whoWeAre from './objects/whoWeAre';
+import sponsors from './objects/sponsors';
+import sponsor from './objects/sponsor';
+import contactUs from './objects/contactUs';
+import socialMedia from './objects/socialMedia';
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -44,5 +53,14 @@ export default createSchema({
     simplePortableText,
     siteConfig,
     textSection,
+    services,
+    service,
+    specialisations,
+    specialisation,
+    whoWeAre,
+    sponsors,
+    sponsor,
+    contactUs,
+    socialMedia,
   ]),
 });
