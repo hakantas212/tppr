@@ -9,6 +9,7 @@ import SimpleBlockContent from "../SimpleBlockContent";
 import MotionBox from "../MotionBox";
 import {IntersectionObserver} from "../IntersectionObserver";
 import styled from "styled-components";
+import client from '../../client'
 
 const Img = styled.img`
   margin-bottom: 53px;
