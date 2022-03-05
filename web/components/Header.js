@@ -201,6 +201,14 @@ Header.propTypes = {
     logo: PropTypes.string,
     title: PropTypes.string,
   }),
+  darkLogo: PropTypes.shape({
+    asset: PropTypes.shape({
+      url: PropTypes.string,
+      extension: PropTypes.string,
+    }),
+    logo: PropTypes.string,
+    title: PropTypes.string,
+  }),
 }
 
 export default withRouter(Header)
