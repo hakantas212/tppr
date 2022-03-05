@@ -41,7 +41,7 @@ export default {
       description:
         'Best choice is to use an SVG where the color are set with currentColor',
       name: 'logo',
-      type: 'svg',
+      type: 'image',
       fields: [
         {
           name: 'alt',
@@ -59,7 +59,7 @@ export default {
       description:
         'Best choice is to use an SVG where the color are set with currentColor',
       name: 'darkLogo',
-      type: 'svg',
+      type: 'image',
       fields: [
         {
           name: 'alt',
