@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useRef} from 'react'
 import PropTypes from 'prop-types'
 import {Button, Col, Container, Form, Row} from 'react-bootstrap'
 import styled from 'styled-components'
@@ -7,6 +7,7 @@ import {Heading, Text} from '../typography'
 import Section from '../Section'
 import client from '../../client'
 import {IntersectionObserver} from '../IntersectionObserver'
+import emailjs from 'emailjs-com';
 
 function urlFor(source) {
   return imageUrlBuilder(client).image(source)
@@ -35,17 +36,18 @@ const Link = styled.a`
 `
 
 function ContactUs({title, email, phone, media}) {
-  const [_email, setEmail] = useState('')
-  const [name, setName] = useState('')
-  const [message, setMessage] = useState('')
+  const ref = useRef()
 
   const sendEmail = (e) => {
     e.preventDefault()
-    console.log({
-      email: _email,
-      name: name,
-      message: message,
-    })
+
+
+    emailjs.sendForm('service_xa4kb46', 'template_29ipwr4', ref.current, 'M_fLzz2sbb_a7KMyF')
+      .then((result) => {
+        window.location.reload()
+      }, (error) => {
+          console.log(error.text);
+      });
   }
 
   return (
@@ -93,11 +95,10 @@ function ContactUs({title, email, phone, media}) {
               </SocialMediaList>
             </Col>
             <Col lg={4} xs={{order: 2, span: 12}}>
-              <Form onSubmit={sendEmail}>
+              <Form onSubmit={sendEmail} ref={ref}>
                 <Form.Group className="mb-4" controlId="formBasicName">
                   <Form.Control
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
+                    name="from_name"
                     type="text"
                     size="lg"
                     placeholder="Name"
@@ -106,8 +107,7 @@ function ContactUs({title, email, phone, media}) {
 
                 <Form.Group className="mb-4" controlId="formBasicEmail">
                   <Form.Control
-                    value={_email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    name="sender"
                     type="email"
                     size="lg"
                     placeholder="E-Mail"
@@ -116,8 +116,7 @@ function ContactUs({title, email, phone, media}) {
 
                 <Form.Group className="mb-4" controlId="formBasicMessage">
                   <Form.Control
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
+                    name="message"
                     as="textarea"
                     size="lg"
                     rows={3}
