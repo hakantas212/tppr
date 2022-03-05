@@ -22,6 +22,17 @@ export default {
       title:'Button',
       name:'button',
       type:'cta'
-    }
+    },
+    {
+      name: 'items',
+      type: 'array',
+      title: 'Partners',
+      of: [
+        {
+          title: 'logo',
+          type: 'image',
+        },
+      ],
+    },
   ]
 }

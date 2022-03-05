@@ -1,0 +1,34 @@
+.imageColumn{
+    text-align: right;
+    height: 410px;
+}
+.imageColumn img{
+    margin-top: 2.5rem;
+}
+
+.container{
+    width: 100vw !important;
+    max-width: 90vw !important;
+}
+.textColumn{
+    margin-top: 6rem;
+    padding-left: 8vw;
+
+}
+
+@media only screen and (max-width: 990px) {
+    .imageColumn{
+        height: 250px;
+    }
+
+    .imageColumn img{
+        margin-top: 1rem;
+        margin-right: 0rem;
+    }
+
+    .textColumn{
+        margin-top: 1rem;
+        padding-top: 5rem;
+        box-sizing: border-box;
+    }
+}
