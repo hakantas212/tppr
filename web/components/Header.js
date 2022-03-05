@@ -10,7 +10,7 @@ import {GlobalContext} from './GlobalStore'
 import Style from './Header.module.css'
 import client from '../client.js'
 import imageUrlBuilder from '@sanity/image-url'
-import { propTypes } from 'react-bootstrap/esm/Image'
+import {propTypes} from 'react-bootstrap/esm/Image'
 
 const builder = imageUrlBuilder(client)
 
@@ -94,7 +94,7 @@ function Header({router, title, navItems, logo, darkLogo}) {
       return null
     }
 
-    if(logo.asset._type === "reference"){
+    if (logo.asset._type === 'reference') {
       return <img src={urlFor(logo.asset._ref)} alt={logo.title} />
     }
 
@@ -109,7 +109,6 @@ function Header({router, title, navItems, logo, darkLogo}) {
     if (open) return Style.open_navbar
     return Style.dark_navbar
   }
-
 
   return (
     <Navbar
@@ -138,35 +137,50 @@ function Header({router, title, navItems, logo, darkLogo}) {
             <Nav.Link
               active={state.id === 'home' && state.inView}
               href="#"
-              onClick={() => {jump('__next');setOpen(false)}}
+              onClick={() => {
+                jump('__next')
+                setOpen(false)
+              }}
             >
               Home
             </Nav.Link>
             <Nav.Link
               href="#"
               active={state.id === 'specialisations' && state.inView}
-              onClick={() => {jump('specialisations');setOpen(false)}}
+              onClick={() => {
+                jump('specialisations')
+                setOpen(false)
+              }}
             >
               Specialisations
             </Nav.Link>
             <Nav.Link
               href="#"
               active={state.id === 'services' && state.inView}
-              onClick={() => {jump('services');setOpen(false)}}
+              onClick={() => {
+                jump('services')
+                setOpen(false)
+              }}
             >
               Services
             </Nav.Link>
             <Nav.Link
               href="#"
               active={state.id === 'woweare' && state.inView}
-              onClick={() => {jump('woweare');setOpen(false)}}
+              onClick={() => {
+                jump('woweare')
+                setOpen(false)
+              }}
             >
               Who We Are?
             </Nav.Link>
             <Button
               variant={'primary'}
               active={state.id === 'contactus' && state.inView}
-              onClick={() => {jump('contactus');setOpen(false)}}
+              onClick={() => {
+                jump('contactus')
+                setOpen(false)
+              }}
             >
               Contact Us
             </Button>
@@ -194,7 +208,7 @@ Header.propTypes = {
   ),
   logo: PropTypes.shape({
     asset: PropTypes.shape({
-      _ref:propTypes.string,
+      _ref: propTypes.string,
       _type: PropTypes.string,
       url: PropTypes.string,
       extension: PropTypes.string,
@@ -204,7 +218,7 @@ Header.propTypes = {
   }),
   darkLogo: PropTypes.shape({
     asset: PropTypes.shape({
-      _ref:propTypes.string,
+      _ref: propTypes.string,
       _type: PropTypes.string,
       url: PropTypes.string,
       extension: PropTypes.string,
