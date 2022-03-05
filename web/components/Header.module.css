@@ -1,31 +1,62 @@
-.open_navbar{
-    background: rgb(4,255,210);
-    background: linear-gradient(150deg, rgba(4,255,210,1) 0%, rgba(25,222,163,1) 45%);
-    border-bottom-left-radius: 25% ;   
+.dark_navbar a{
+    color: white !important;
 }
 
-.open_navbar>div :nth-child(3) a{
-    text-align: right;
-    color:#072125 !important;
-    font-weight: 600;
-    font-size: 18px;
+@media only screen and (max-width: 990px) {
+    .open_navbar{
+        background: rgb(4,255,210);
+        background: linear-gradient(150deg, rgba(4,255,210,1) 0%, rgba(25,222,163,1) 45%);
+        border-bottom-left-radius: 25% ;   
+    }
+    
+    .open_navbar>div :nth-child(3) a{
+        text-align: right;
+        color:#072125 !important;
+        font-weight: 600;
+        font-size: 18px;
+    }
+    
+    .open_navbar>div>div>button>div::before,
+    .open_navbar>div>div>button>div::after{
+        background: #072125;
+    }
+    
+    .open_navbar>div :nth-child(3){
+        text-align: right;
+    }
+    
+    
+    .open_navbar>div :nth-child(3) button{
+        width: fit-content !important;
+        margin-left: auto !important;
+        margin-right: 25px !important;
+        width: 214px !important;
+        height: 54px !important;
+        font-size: 24px;
+        background: #192242 !important;
+        color:white !important
+    }
+
+    
+    .dark_navbar a{
+        text-align: right;
+        color:#072125 !important;
+        font-weight: 600;
+        font-size: 18px;
+    }
+    
+    .dark_navbar>div :nth-child(3){
+        text-align: right;
+    }
+    
+    
+    .dark_navbar>div :nth-child(3) button{
+        width: fit-content !important;
+        margin-left: auto !important;
+        margin-right: 25px !important;
+        width: 214px !important;
+        height: 54px !important;
+        font-size: 24px;
+    }
 }
 
-.open_navbar>div>div>button>div::before,
-.open_navbar>div>div>button>div::after{
-    background: #072125;
-}
-
-.open_navbar>div :nth-child(3){
-    text-align: right;
-}
-
-
-.open_navbar>div :nth-child(3) button{
-    width: fit-content !important;
-    margin-left: auto !important;
-    margin-right: 25px !important;
-    width: 214px !important;
-    height: 54px !important;
-    font-size: 24px;
-}

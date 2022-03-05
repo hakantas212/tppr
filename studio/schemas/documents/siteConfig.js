@@ -55,9 +55,9 @@ export default {
       ],
     },
     {
-      title: 'Brand logo Dark',
+      title: 'Brand Dark logo',
       description:
-        'Best choice is to use an SVG where the color are set with darkColor',
+        'Best choice is to use an SVG where the color are set with currentColor',
       name: 'darkLogo',
       type: 'image',
       fields: [

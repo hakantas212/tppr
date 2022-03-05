@@ -8,6 +8,14 @@ import {useWindowScroll} from 'react-use'
 import {jump} from '../utils/jump'
 import {GlobalContext} from './GlobalStore'
 import Style from './Header.module.css'
+import client from '../client.js'
+import imageUrlBuilder from '@sanity/image-url'
+
+const builder = imageUrlBuilder(client)
+
+const urlFor = (source) => {
+  return builder.image(source)
+}
 
 const BurgerButtonWrapper = styled.div`
   position: relative;
@@ -85,6 +93,10 @@ function Header({router, title, navItems, logo, darkLogo}) {
       return null
     }
 
+    if(logo.asset._type === "reference"){
+      return <img src={urlFor(logo.asset._ref)} alt={logo.title} />
+    }
+
     if (logo.asset.extension === 'svg') {
       return <SVG src={logo.asset.url} />
     }
@@ -94,12 +106,9 @@ function Header({router, title, navItems, logo, darkLogo}) {
 
   const responsiveBackground = () => {
     if (open) return Style.open_navbar
-    if (y > 100) return Style.dark_navbar
+    return Style.dark_navbar
   }
 
-  const responseNavlinkStyle = () => {
-    if (!open) return {color: '#FFFFFF !important'}
-  }
 
   return (
     <Navbar
@@ -126,41 +135,37 @@ function Header({router, title, navItems, logo, darkLogo}) {
         <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
           <Nav>
             <Nav.Link
-              style={responseNavlinkStyle()}
               active={state.id === 'home' && state.inView}
               href="#"
-              onClick={() => jump('__next')}
+              onClick={() => {jump('__next');setOpen(false)}}
             >
               Home
             </Nav.Link>
             <Nav.Link
-              style={responseNavlinkStyle()}
               href="#"
               active={state.id === 'specialisations' && state.inView}
-              onClick={() => jump('specialisations')}
+              onClick={() => {jump('specialisations');setOpen(false)}}
             >
               Specialisations
             </Nav.Link>
             <Nav.Link
-              style={responseNavlinkStyle()}
               href="#"
               active={state.id === 'services' && state.inView}
-              onClick={() => jump('services')}
+              onClick={() => {jump('services');setOpen(false)}}
             >
               Services
             </Nav.Link>
             <Nav.Link
-              style={responseNavlinkStyle()}
               href="#"
               active={state.id === 'woweare' && state.inView}
-              onClick={() => jump('woweare')}
+              onClick={() => {jump('woweare');setOpen(false)}}
             >
               Who We Are?
             </Nav.Link>
             <Button
-              variant={open ? 'secondary' : 'primary'}
+              variant={'primary'}
               active={state.id === 'contactus' && state.inView}
-              onClick={() => jump('contactus')}
+              onClick={() => {jump('contactus');setOpen(false)}}
             >
               Contact Us
             </Button>
@@ -199,7 +204,7 @@ Header.propTypes = {
       url: PropTypes.string,
       extension: PropTypes.string,
     }),
-    logo: PropTypes.string,
+    darkLogo: PropTypes.string,
     title: PropTypes.string,
   }),
 }
