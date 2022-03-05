@@ -110,11 +110,6 @@ function Header({router, title, navItems, logo, darkLogo}) {
     return <img src={logo.asset.url} alt={logo.title} />
   }
 
-  const responsiveBackground = () => {
-    if (open) return Style.open_navbar
-    return Style.dark_navbar
-  }
-
   return (
     <Navbar
       className={`p-0 m-0 ${headerBg}`}
