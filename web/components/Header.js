@@ -10,6 +10,7 @@ import {GlobalContext} from './GlobalStore'
 import Style from './Header.module.css'
 import client from '../client.js'
 import imageUrlBuilder from '@sanity/image-url'
+import { propTypes } from 'react-bootstrap/esm/Image'
 
 const builder = imageUrlBuilder(client)
 
@@ -193,6 +194,8 @@ Header.propTypes = {
   ),
   logo: PropTypes.shape({
     asset: PropTypes.shape({
+      _ref:propTypes.string,
+      _type: PropTypes.string,
       url: PropTypes.string,
       extension: PropTypes.string,
     }),
@@ -201,6 +204,8 @@ Header.propTypes = {
   }),
   darkLogo: PropTypes.shape({
     asset: PropTypes.shape({
+      _ref:propTypes.string,
+      _type: PropTypes.string,
       url: PropTypes.string,
       extension: PropTypes.string,
     }),
