@@ -21,7 +21,6 @@ function urlFor(source) {
 }
 
 function WhoWeAre({title, description, background, button,items}) {
-  console.log(items)
   const SectionStyle = {
     backgroundImage: `url(${urlFor(background).auto('format').fit('max').toString()})`,
     backgroundRepeat: 'no-repeat',

@@ -12,7 +12,6 @@ export const IntersectionObserver = ({children, reset = false, id}) => {
     threshold: .3,
   });
 
-  console.log("entry:", {id, entry})
 
   useEffect(() => {
     const inViewNow = entry && entry.isIntersecting;
