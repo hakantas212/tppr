@@ -55,6 +55,24 @@ export default {
       ],
     },
     {
+      title: 'Brand logo Dark',
+      description:
+        'Best choice is to use an SVG where the color are set with darkColor',
+      name: 'darkLogo',
+      type: 'image',
+      fields: [
+        {
+          name: 'alt',
+          type: 'string',
+          title: 'Alternative text',
+          description: 'Important for SEO and accessiblity.',
+          options: {
+            isHighlighted: true,
+          },
+        },
+      ],
+    },
+    {
       title: 'Main navigation',
       name: 'mainNavigation',
       description: 'Select pages for the top menu',

@@ -1,12 +1,13 @@
 import React, {useContext, useState} from 'react'
 import PropTypes from 'prop-types'
 import {withRouter} from 'next/router'
-import styled from "styled-components";
+import styled from 'styled-components'
 import SVG from 'react-inlinesvg'
-import {Button, Container, Nav, Navbar} from "react-bootstrap";
-import {useWindowScroll} from "react-use";
-import {jump} from "../utils/jump";
-import {GlobalContext} from "./GlobalStore";
+import {Button, Container, Nav, Navbar} from 'react-bootstrap'
+import {useWindowScroll} from 'react-use'
+import {jump} from '../utils/jump'
+import {GlobalContext} from './GlobalStore'
+import Style from './Header.module.css'
 
 const BurgerButtonWrapper = styled.div`
   position: relative;
@@ -34,7 +35,8 @@ const BurgerButtonIcon = styled.div`
   display: block;
   content: '';
 
-  &:before, &:after {
+  &:before,
+  &:after {
     cursor: pointer;
     border-radius: 1px;
     height: 2px;
@@ -56,7 +58,9 @@ const BurgerButtonIcon = styled.div`
     top: 10px;
   }
 
-  ${({open}) => open && `
+  ${({open}) =>
+    open &&
+    `
     background: transparent;
     &::before,
     &::after {
@@ -71,47 +75,106 @@ const BurgerButtonIcon = styled.div`
   `}
 `
 
-function Header({router, title, navItems, logo}) {
-  const [open, setOpen] = useState(false);
-  const {state} = useContext(GlobalContext);
-  const {y} = useWindowScroll();
+function Header({router, title, navItems, logo, darkLogo}) {
+  const [open, setOpen] = useState(false)
+  const {state} = useContext(GlobalContext)
+  const {y} = useWindowScroll()
 
   const renderLogo = (logo) => {
-    if (!logo || !logo.asset) {
-      return null
+    if(!open){
+      if (!logo || !logo.asset) {
+        return null
+      }
+  
+      if (logo.asset.extension === 'svg') {
+        return <SVG src={logo.asset.url} />
+      }
+  
+      return <img src={logo.asset.url} alt={logo.title} />
     }
-
-    if (logo.asset.extension === 'svg') {
-      return <SVG src={logo.asset.url} />
+    else{
+      if(!darkLogo || !logo.asset) return null
+      if(logo.asset.extension === 'svg') return <SVG src={darkLogo.asset.url}  />
+      return <img src={darkLogo.asset.url} alt={darkLogo.title} />
     }
+  }
 
-    return <img src={logo.asset.url} alt={logo.title} />
+  const responsiveBackground = () => {
+    if (open) return Style.open_navbar
+    if (y > 100) return Style.dark_navbar
+  }
+
+  const responseNavlinkStyle = () => {
+    if(!open) return {color:'#FFFFFF !important'}
   }
 
   return (
-      <Navbar className="p-0 m-0" expand="lg" expanded={open} bg={y > 100 && "dark"}>
-        <Container>
-          <Navbar.Brand href="#" onClick={(e) => {
-            e.preventDefault();
-            jump("__next");
+    <Navbar
+      className={`p-0 m-0 ${responsiveBackground()}`}
+      expand="lg"
+      expanded={open}
+      bg={y > 100 && !open && 'dark'}
+    >
+      <Container>
+        <Navbar.Brand
+          href="#"
+          onClick={(e) => {
+            e.preventDefault()
+            jump('__next')
           }}
-          >{renderLogo(logo)}</Navbar.Brand>
-          <BurgerButtonWrapper className="d-lg-none d-block">
-            <BurgerButton variant="link" className="position-absolute" onClick={() => setOpen(!open)}>
-              <BurgerButtonIcon open={open} />
-            </BurgerButton>
-          </BurgerButtonWrapper>
-          <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
-            <Nav>
-              <Nav.Link active={state.id === "home" && state.inView} href="#" onClick={() => jump("__next")}>Home</Nav.Link>
-              <Nav.Link href="#" active={state.id === "specialisations" && state.inView} onClick={() => jump("specialisations")}>Specialisations</Nav.Link>
-              <Nav.Link href="#" active={state.id === "services" && state.inView} onClick={() => jump("services")}>Services</Nav.Link>
-              <Nav.Link href="#" active={state.id === "woweare" && state.inView} onClick={() => jump("woweare")}>Who We Are?</Nav.Link>
-              <Button variant="primary" active={state.id === "contactus" && state.inView} onClick={() => jump("contactus")}>Contact Us</Button>
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
+        >
+          {renderLogo(logo)}
+        </Navbar.Brand>
+        <BurgerButtonWrapper className="d-lg-none d-block">
+          <BurgerButton variant="link" className="position-absolute" onClick={() => setOpen(!open)}>
+            <BurgerButtonIcon open={open} />
+          </BurgerButton>
+        </BurgerButtonWrapper>
+        <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
+          <Nav>
+            <Nav.Link
+              style={responseNavlinkStyle()}
+              active={state.id === 'home' && state.inView}
+              href="#"
+              onClick={() => jump('__next')}
+            >
+              Home
+            </Nav.Link>
+            <Nav.Link
+              style={responseNavlinkStyle()}
+              href="#"
+              active={state.id === 'specialisations' && state.inView}
+              onClick={() => jump('specialisations')}
+            >
+              Specialisations
+            </Nav.Link>
+            <Nav.Link
+              style={responseNavlinkStyle()}
+              href="#"
+              active={state.id === 'services' && state.inView}
+              onClick={() => jump('services')}
+            >
+              Services
+            </Nav.Link>
+            <Nav.Link
+              style={responseNavlinkStyle()}
+              href="#"
+              active={state.id === 'woweare' && state.inView}
+              onClick={() => jump('woweare')}
+            >
+              Who We Are?
+            </Nav.Link>
+            <Button
+              variant={open ? "secondary" : "primary"}
+              active={state.id === 'contactus' && state.inView}
+              onClick={() => jump('contactus')}
+            >
+              Contact Us
+            </Button>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   )
 }
 

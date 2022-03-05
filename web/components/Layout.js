@@ -13,7 +13,7 @@ function Layout(props) {
     return <div>Missing config</div>
   }
 
-  const {title, mainNavigation, logo} = config
+  const {title, mainNavigation, logo, darkLogo} = config
 
   return (
     <>
@@ -22,7 +22,7 @@ function Layout(props) {
       </Head>
       <div>
         <GlobalStore>
-          <Header title={title} navItems={mainNavigation} logo={logo} />
+          <Header title={title} navItems={mainNavigation} logo={logo} darkLogo={darkLogo}/>
           <div>{children}</div>
           <Footer logo={logo} />
         </GlobalStore>
