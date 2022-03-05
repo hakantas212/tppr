@@ -42,7 +42,7 @@ function WhoWeAre({title, description, background, button,items}) {
                 <Cta {...button} />
               </Col>
               <Col lg={{order: 'last', span: 6}} xs={{order: 'first', span: 12}} className={Style.imageColumn}>
-                <Img src="hero_logo_special.png" alt="hero_logo" />
+                <Img src="hero_logo_special.svg" alt="hero_logo" />
               </Col>
             </Row>
             <Row style={{alignItems:'center',justifyContent:'space-between',padding:'0vw 8vw'}}>
