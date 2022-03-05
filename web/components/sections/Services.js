@@ -37,12 +37,14 @@ const Card = styled.div`
   }
 
   & ul{
-    display:none;
+    height:0px !important;
+    overflow:hidden !important;
     z-index:1;
+    transition: all 0.3s;
   }
 
   &:hover ul{
-    display:initial;
+    height:200px !important;
   }
 `
 
