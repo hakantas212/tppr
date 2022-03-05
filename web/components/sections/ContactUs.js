@@ -1,4 +1,4 @@
-import React, {useRef} from 'react'
+import React, {useEffect, useRef, useState} from 'react'
 import PropTypes from 'prop-types'
 import {Button, Col, Container, Form, Row} from 'react-bootstrap'
 import styled from 'styled-components'
@@ -7,7 +7,7 @@ import {Heading, Text} from '../typography'
 import Section from '../Section'
 import client from '../../client'
 import {IntersectionObserver} from '../IntersectionObserver'
-import emailjs from 'emailjs-com';
+import emailjs from 'emailjs-com'
 
 function urlFor(source) {
   return imageUrlBuilder(client).image(source)
@@ -35,20 +35,49 @@ const Link = styled.a`
   text-decoration: none;
 `
 
+const Popup = styled.div`
+  position: absolute;
+  top: -10px;
+  bottom: -10px;
+  left: -10px;
+  right: -10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  border-radius: 18px;
+  color: #19dea3;
+  font-weight: 600;
+  font-size: 20px;
+  transform: rotateY(90deg);
+  -webkit-transition: -webkit-transform 0.8s ease-in-out;
+  -ms-transition: -ms-transform 0.8s ease-in-out;
+  transition: transform 0.8s ease-in-out;
+`
+
 function ContactUs({title, email, phone, media}) {
   const ref = useRef()
-
+  const [emailSent, setEmailSent] = useState(true)
   const sendEmail = (e) => {
     e.preventDefault()
 
-
-    emailjs.sendForm('service_xa4kb46', 'template_29ipwr4', ref.current, 'M_fLzz2sbb_a7KMyF')
-      .then((result) => {
-        window.location.reload()
-      }, (error) => {
-          console.log(error.text);
-      });
+    emailjs.sendForm('service_xa4kb46', 'template_29ipwr4', ref.current, 'M_fLzz2sbb_a7KMyF').then(
+      (result) => {
+        setEmailSent(true)
+      },
+      (error) => {
+        console.log(error.text)
+      }
+    )
   }
+
+  useEffect(() => {
+    if (emailSent) {
+      setTimeout(() => {
+        setEmailSent(false)
+      }, 1500)
+    }
+  }, [emailSent])
 
   return (
     <Section id="contactus">
@@ -94,24 +123,14 @@ function ContactUs({title, email, phone, media}) {
                   : ''}
               </SocialMediaList>
             </Col>
-            <Col lg={4} xs={{order: 2, span: 12}}>
+            <Col lg={4} xs={{order: 2, span: 12}} style={{position: 'relative'}}>
               <Form onSubmit={sendEmail} ref={ref}>
                 <Form.Group className="mb-4" controlId="formBasicName">
-                  <Form.Control
-                    name="from_name"
-                    type="text"
-                    size="lg"
-                    placeholder="Name"
-                  />
+                  <Form.Control name="from_name" type="text" size="lg" placeholder="Name" />
                 </Form.Group>
 
                 <Form.Group className="mb-4" controlId="formBasicEmail">
-                  <Form.Control
-                    name="sender"
-                    type="email"
-                    size="lg"
-                    placeholder="E-Mail"
-                  />
+                  <Form.Control name="sender" type="email" size="lg" placeholder="E-Mail" />
                 </Form.Group>
 
                 <Form.Group className="mb-4" controlId="formBasicMessage">
@@ -136,6 +155,9 @@ function ContactUs({title, email, phone, media}) {
                   </Button>
                 </div>
               </Form>
+              <Popup style={emailSent ? {transform: 'rotateY(0deg)'} : {}}>
+                Thank you for contacting us.
+              </Popup>
             </Col>
           </Row>
         </Container>
