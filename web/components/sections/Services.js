@@ -34,6 +34,8 @@ const Card = styled.div`
     width: 100%;
     height: 70%;
     background: linear-gradient(to bottom, rgba(255, 0, 0, 0), #27324f);
+    background: -webkit-linear-gradient(to bottom, rgba(255, 0, 0, 0), #27324f);
+    background: -moz-linear-gradient(to bottom, rgba(255, 0, 0, 0), #27324f);
   }
 
   & ul{
