@@ -47,8 +47,8 @@ function WhoWeAre({title, description, background, button,items}) {
             </Row>
             <Row style={{alignItems:'center',justifyContent:'space-between',padding:'0vw 8vw'}}>
               {
-                items?.map(item=>(
-                  <Col xl={2} lg={3} md={4} sm={6} style={{marginTop:'3rem',textAlign:'center'}}>
+                items?.map((item,index)=>(
+                  <Col key={`sponsorlogo-${index}`} xl={2} lg={3} md={4} sm={6} style={{marginTop:'3rem',textAlign:'center'}}>
                     <img src={urlFor(item).auto('format').fit('max').toString()}/>
                     </Col>
                 ))
