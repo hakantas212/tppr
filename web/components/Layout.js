@@ -43,6 +43,11 @@ Layout.propTypes = {
         url: PropTypes.string,
       }),
     }),
+    darkLogo: PropTypes.shape({
+      asset: PropTypes.shape({
+        url: PropTypes.string,
+      }),
+    }),
     url: PropTypes.string,
   }),
 }

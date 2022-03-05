@@ -81,22 +81,15 @@ function Header({router, title, navItems, logo, darkLogo}) {
   const {y} = useWindowScroll()
 
   const renderLogo = (logo) => {
-    if(!open){
-      if (!logo || !logo.asset) {
-        return null
-      }
-  
-      if (logo.asset.extension === 'svg') {
-        return <SVG src={logo.asset.url} />
-      }
-  
-      return <img src={logo.asset.url} alt={logo.title} />
+    if (!logo || !logo.asset) {
+      return null
     }
-    else{
-      if(!darkLogo || !logo.asset) return null
-      if(logo.asset.extension === 'svg') return <SVG src={darkLogo.asset.url}  />
-      return <img src={darkLogo.asset.url} alt={darkLogo.title} />
+
+    if (logo.asset.extension === 'svg') {
+      return <SVG src={logo.asset.url} />
     }
+
+    return <img src={logo.asset.url} alt={logo.title} />
   }
 
   const responsiveBackground = () => {
@@ -105,7 +98,7 @@ function Header({router, title, navItems, logo, darkLogo}) {
   }
 
   const responseNavlinkStyle = () => {
-    if(!open) return {color:'#FFFFFF !important'}
+    if (!open) return {color: '#FFFFFF !important'}
   }
 
   return (
@@ -123,7 +116,7 @@ function Header({router, title, navItems, logo, darkLogo}) {
             jump('__next')
           }}
         >
-          {renderLogo(logo)}
+          {renderLogo(open ? darkLogo : logo)}
         </Navbar.Brand>
         <BurgerButtonWrapper className="d-lg-none d-block">
           <BurgerButton variant="link" className="position-absolute" onClick={() => setOpen(!open)}>
@@ -165,7 +158,7 @@ function Header({router, title, navItems, logo, darkLogo}) {
               Who We Are?
             </Nav.Link>
             <Button
-              variant={open ? "secondary" : "primary"}
+              variant={open ? 'secondary' : 'primary'}
               active={state.id === 'contactus' && state.inView}
               onClick={() => jump('contactus')}
             >
