@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react'
+import React, {useContext, useState, useEffect} from 'react'
 import PropTypes from 'prop-types'
 import {withRouter} from 'next/router'
 import styled from 'styled-components'
@@ -87,6 +87,12 @@ function Header({router, title, navItems, logo, darkLogo}) {
   const [open, setOpen] = useState(false)
   const {state} = useContext(GlobalContext)
   const {y} = useWindowScroll()
+  const [headerBg,setHeaderBg] = useState(Style.dark_navbar)
+
+  useEffect(()=>{
+    if(!open) setTimeout(()=>{setHeaderBg(Style.dark_navbar)},500)
+    else setHeaderBg(Style.open_navbar)
+  },[open])
 
   const renderLogo = (logo) => {
     if (!logo || !logo.asset) {
@@ -104,14 +110,10 @@ function Header({router, title, navItems, logo, darkLogo}) {
     return <img src={logo.asset.url} alt={logo.title} />
   }
 
-  const responsiveBackground = () => {
-    if (open) return Style.open_navbar
-    return Style.dark_navbar
-  }
-
   return (
     <Navbar
-      className={`p-0 m-0 ${responsiveBackground()}`}
+      className={`p-0 m-0 ${headerBg}`}
+      style={!open ? {borderBottomLeftRadius:"0px"} : {}}
       expand="lg"
       expanded={open}
       bg={y > 100 && !open && 'dark'}
@@ -126,7 +128,7 @@ function Header({router, title, navItems, logo, darkLogo}) {
         >
           {renderLogo(open ? darkLogo : logo)}
         </Navbar.Brand>
-        <BurgerButtonWrapper className="d-lg-none d-block">
+        <BurgerButtonWrapper className="d-lg-none d-block" style={{marginRight:'-35px'}}>
           <BurgerButton variant="link" className="position-absolute" onClick={() => setOpen(!open)}>
             <BurgerButtonIcon open={open} />
           </BurgerButton>
