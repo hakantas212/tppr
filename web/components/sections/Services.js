@@ -33,7 +33,7 @@ const Card = styled.div`
     left: 0;
     width: 100%;
     height: 70%;
-    background-image: linear-gradient(to bottom, rgba(255, 0, 0, 0), rgba(25, 34, 66, 1));
+    background: linear-gradient(to bottom, rgba(255, 0, 0, 0), #27324f);
   }
 
   & ul{
