@@ -17,6 +17,9 @@ const HeroWrapper = styled.div`
   display: flex;
   align-items: flex-end;
   justify-content: center;
+  @media (max-width: 375px) {
+    height:107vh;
+  }
 `
 
 const HeroContent = styled.div`
@@ -47,18 +50,16 @@ const ScrollDown = styled.div`
   margin-left: -25px;
   height: 50px;
   width: 50px;
+  @media (max-width: 375px) {
+    margin-bottom: 65px;
+  }
 `
 
 const options = {
   fullScreen: {
     enable: false
   },
-  background: {
-    color: {
-      value: "transparent",
-    },
-  },
-  fpsLimit: 120,
+  fpsLimit: 60,
   interactivity: {
     modes: {
       bubble: {
