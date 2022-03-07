@@ -115,7 +115,9 @@ function ContactUs({title, email, phone, media}) {
                         <a href={entity.link} target="_blank" rel="noreferrer">
                           <img
                             src={urlFor(entity.image).auto('format').fit('max').toString()}
-                            alt={entity.title}
+                          alt={entity.title}
+                          width={23}
+                          height={21}
                           />
                         </a>
                       </li>
