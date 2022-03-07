@@ -20,6 +20,7 @@ export default class MyDocument extends Document {
     return (
       <Html lang={this.props.lang || 'en'}>
         <Head>
+          <link rel="shortcut icon" href="/public/favicon.svg" />
           <script
                   async
                   src="https://www.googletagmanager.com/gtag/js?id=[G-TK36GB1T83]"
