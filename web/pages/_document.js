@@ -20,6 +20,21 @@ export default class MyDocument extends Document {
     return (
       <Html lang={this.props.lang || 'en'}>
         <Head>
+          <script
+                  async
+                  src="https://www.googletagmanager.com/gtag/js?id=[G-TK36GB1T83]"
+                />
+
+                <script
+                  dangerouslySetInnerHTML={{
+                    __html: `
+                      window.dataLayer = window.dataLayer || [];
+                      function gtag(){dataLayer.push(arguments);}
+                      gtag('js', new Date());
+                      gtag('config', '[G-TK36GB1T83]', { page_path: window.location });
+                    `,
+                  }}
+                />
           <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
           {this.props.styleTags}
         </Head>
