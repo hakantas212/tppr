@@ -194,11 +194,9 @@ function Hero({heading, backgroundImage, image, tagline, ctas}) {
           detectRetina: true,
            fullScreen: {
               enable: false
-            },
-          
+            }, 
         }}
-                  style={{ position: "absolute", top: 0, left: 0 }}
-      />
+        style={{position: "absolute", top: 0, left: 0}}/>
                 </HeroContent>
               </Col>
             </Row>
