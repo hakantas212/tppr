@@ -8,6 +8,8 @@ import Section from '../Section'
 import client from '../../client'
 import {IntersectionObserver} from '../IntersectionObserver'
 import emailjs from 'emailjs-com'
+import {sendForm} from 'emailjs-com'
+
 
 function urlFor(source) {
   return imageUrlBuilder(client).image(source)

@@ -1,4 +1,5 @@
 import React from 'react'
+import Script from 'next/script'
 import Document, {Html, Head, Main, NextScript} from 'next/document'
 import {ServerStyleSheet} from 'styled-components';
 import client from '../client'
@@ -32,7 +33,7 @@ export default class MyDocument extends Document {
                   src="https://www.googletagmanager.com/gtag/js?id=G-TK36GB1T83"
                 />
 
-                <script
+                <Script
                   dangerouslySetInnerHTML={{
                     __html: `
                       window.dataLayer = window.dataLayer || [];
