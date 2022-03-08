@@ -55,6 +55,14 @@ const ScrollDown = styled.div`
   }
 `
 
+
+function urlFor(source) {
+  return imageUrlBuilder(client).image(source)
+}
+
+function Hero({ heading, backgroundImage, image, tagline, ctas }) {
+  
+
 const options = {
   fullScreen: {
     enable: false
@@ -96,7 +104,7 @@ const options = {
       enable: true,
       outMode: "bounce",
       random: false,
-      speed: 6,
+      speed: 2,
       straight: false,
     },
     number: {
@@ -119,12 +127,6 @@ const options = {
   },
   detectRetina: true,
 }
-
-function urlFor(source) {
-  return imageUrlBuilder(client).image(source)
-}
-
-function Hero({heading, backgroundImage, image, tagline, ctas}) {
   const style = backgroundImage
     ? {
         backgroundImage: `url("${urlFor(backgroundImage).width(2000).auto('format').url()}")`,
