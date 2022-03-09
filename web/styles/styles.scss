@@ -1,9 +1,26 @@
-@import "bootstrap/variables.bootstrap";
-@import "~bootstrap/scss/bootstrap";
-@import "~slick-carousel/slick/slick";
-@import "~slick-carousel/slick/slick-theme";
-@import "bootstrap/components";
+@import 'bootstrap/variables.bootstrap';
+@import '~bootstrap/scss/bootstrap';
+@import '~slick-carousel/slick/slick';
+@import '~slick-carousel/slick/slick-theme';
+@import 'bootstrap/components';
 
-html, body, * {
+html,
+body,
+* {
   font-family: 'Open Sans', sans-serif;
+}
+
+.slick-track {
+  display: flex;
+  align-items: center;
+}
+
+.slick-slider .slick-track,
+.slick-slider .slick-list {
+  display: flex;
+  align-items: center;
+}
+
+.slick-slide img {
+  margin: 0 auto;
 }

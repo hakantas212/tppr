@@ -29,7 +29,7 @@ const settings = {
   autoplaySpeed: 3000,
   autoplay: true,
   slidesToShow: 4,
-  slidesToScroll: 1,
+  slidesToScroll: 3,
   initialSlide: 0,
   nextArrow: <NextArrow />,
   prevArrow: <PrevArrow />,
@@ -37,7 +37,7 @@ const settings = {
     {
       breakpoint: 768,
       settings: {
-        slidesToShow: 3,
+        slidesToShow: 2,
         slidesToScroll: 1,
       }
     },
@@ -64,7 +64,7 @@ function Sponsors({title, items}) {
               {
                 items.map((item) => (
                   <div key={item._key}>
-                    <img src={item.image && urlFor(item.image).auto('format').fit('max').toString()} alt=""/>
+                    <img src={item.image && urlFor(item.image).auto('format').fit('max').toString()} alt="media outreach" width="133px" height="h-auto" />
                   </div>
                 ))
               }
