@@ -88,10 +88,17 @@ function Header({router, title, navItems, logo, darkLogo}) {
   const {state} = useContext(GlobalContext)
   const {y} = useWindowScroll()
   const [headerBg,setHeaderBg] = useState(Style.dark_navbar)
+  const [headerLogo,setHeaderLogo] = useState(logo)
 
   useEffect(()=>{
-    if(!open) setTimeout(()=>{setHeaderBg(Style.dark_navbar)},500)
-    else setHeaderBg(Style.open_navbar)
+    if(!open) setTimeout(()=>{
+      setHeaderBg(Style.dark_navbar)
+      setHeaderLogo(logo)
+        },475)
+    else {
+      setHeaderBg(Style.open_navbar)
+      setHeaderLogo(darkLogo)
+    }
   },[open])
 
   const renderLogo = (logo) => {
@@ -100,14 +107,14 @@ function Header({router, title, navItems, logo, darkLogo}) {
     }
 
     if (logo.asset._type === 'reference') {
-      return <img src={urlFor(logo.asset._ref)} alt={logo.title} />
+      return <img width="258px" height="39px" src={urlFor(logo.asset._ref)} alt={logo.title} />
     }
 
     if (logo.asset.extension === 'svg') {
       return <SVG src={logo.asset.url} />
     }
 
-    return <img src={logo.asset.url} alt={logo.title} />
+    return <img width="258px" height="39px" src={logo.asset.url} alt={logo.title} />
   }
 
   return (
@@ -126,7 +133,7 @@ function Header({router, title, navItems, logo, darkLogo}) {
             jump('__next')
           }}
         >
-          {renderLogo(open ? darkLogo : logo)}
+          {renderLogo(headerLogo)}
         </Navbar.Brand>
         <BurgerButtonWrapper className="d-lg-none d-block" style={{marginRight:'-35px'}}>
           <BurgerButton variant="link" className="position-absolute" onClick={() => setOpen(!open)}>

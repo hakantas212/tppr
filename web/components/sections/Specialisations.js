@@ -17,7 +17,7 @@ const Items = styled.div`
   display: grid;
   grid-template-columns: repeat(2, min-content);
   justify-content: space-between;
-  @media (min-width: 768px) {
+  @media (min-width: 410px) {
     grid-template-columns: repeat(3, min-content);
   }
   @media (min-width: 992px) {
