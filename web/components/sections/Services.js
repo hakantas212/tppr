@@ -38,16 +38,25 @@ const Card = styled.div`
     background: -moz-linear-gradient(to bottom, rgba(255, 0, 0, 0), #27324f);
   }
 
-  & ul{
-    height:0px !important;
-    overflow:hidden !important;
-    z-index:1;
+  & ul {
+    height: 0px !important;
+    overflow: hidden !important;
+    z-index: 1;
     transition: all 0.3s;
   }
 
-  &:hover ul{
-    height:200px !important;
+  &:hover ul {
+    height: ${(props) => props.itemCount * 30}px !important;
+    margin-bottom: ${(props) => (8 - props.itemCount)}px !important;
+    overflow: visible !important;
   }
+
+  @media (max-width: 1000px) {
+    & ul * {
+      font-size:12px !important
+    }
+  }
+  
 `
 
 function Services({title, items}) {
@@ -65,8 +74,9 @@ function Services({title, items}) {
               <Col xs={12}>
                 <Row>
                   {items.map((item, index) => (
-                    <Col key={item._key} md={6} className="mb-4 mx-auto">
+                    <Col key={item._key} md={12} lg={6} className="mb-4 mx-auto">
                       <Card
+                        itemCount={item?.innerListItems?.length ?? 0}
                         backgroundImage={urlFor(item.backgroundImage)
                           .auto('format')
                           .fit('max')
@@ -75,19 +85,17 @@ function Services({title, items}) {
                         <Text size="sm" bold color="white">
                           {item.title}
                         </Text>
-                        {item.innerListItems && <ul style={{listStyle:'none',marginTop:'1rem'}}>
-                          {item.innerListItems?.map((_item, index) => (
-                            <li key={`inneritem-${index}-${_item}`}>
-                              <Text
-                                size="sm"
-                                bold
-                                color="white"
-                              >
-                                {_item}
-                              </Text>
-                            </li>
-                          ))}
-                        </ul>}
+                        {item.innerListItems && (
+                          <ul style={{listStyle: 'none', marginTop: '1rem'}}>
+                            {item.innerListItems?.map((_item, index) => (
+                              <li key={`inneritem-${index}-${_item}`}>
+                                <Text size="sm" bold color="white">
+                                  {_item}
+                                </Text>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
                       </Card>
                     </Col>
                   ))}
