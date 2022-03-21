@@ -123,7 +123,7 @@ function Header({router, title, navItems, logo, darkLogo}) {
       style={!open ? {borderBottomLeftRadius:"0px"} : {}}
       expand="lg"
       expanded={open}
-      bg={y > 100 && !open && 'dark'}
+      bg={((y > 100 && !open) || (state.id!=="home" && !open)) && 'dark'}
     >
       <Container>
         <Navbar.Brand
