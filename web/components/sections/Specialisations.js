@@ -48,7 +48,7 @@ function Specialisations({title, items}) {
                   <Items>
                     {items.map((item, index) => (
                       <Item key={item._key}>
-                        <Img src={item.backgroundImage && urlFor(item.backgroundImage).auto('format').fit('max').toString()} alt=""/>
+                        <Img src={item.backgroundImage && urlFor(item.backgroundImage).auto('format').fit('max').toString()} alt="specialisation image"/>
                         <Text size="sm" bold style={{whiteSpace: "nowrap"}}>{item.title}</Text>
                       </Item>
                     ))}

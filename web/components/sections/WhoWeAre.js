@@ -49,7 +49,7 @@ function WhoWeAre({title, description, background, button,items}) {
               {
                 items?.map((item,index)=>(
                   <Col key={`sponsorlogo-${index}`} xl={2} lg={3} md={4} sm={6} style={{marginTop:'3rem',textAlign:'center'}}>
-                    <img src={urlFor(item).auto('format').fit('max').toString()}/>
+                    <img src={urlFor(item).auto('format').fit('max').toString()} alt="sponsor_logo"/>
                     </Col>
                 ))
               }

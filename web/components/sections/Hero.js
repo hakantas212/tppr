@@ -139,7 +139,7 @@ function Hero({heading, backgroundImage, image, tagline, ctas}) {
             <Row>
               <Col>
                 <HeroContent>
-                  {image && <Img src={urlFor(image).auto('format').fit('max').toString()} alt=""/>}
+                  {image && <Img src={urlFor(image).auto('format').fit('max').toString()} alt="hero_logo"/>}
                   {heading && <Heading dangerouslySetInnerHTML={{__html: heading}} />}
                   <div>{tagline && <SimpleBlockContent blocks={tagline} />}</div>
                   {ctas && (
