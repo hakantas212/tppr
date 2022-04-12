@@ -17,7 +17,7 @@ const HeroWrapper = styled.div`
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  background-size: contain;
+  background-size: cover;
   @media (max-width: 375px) {
     height:107vh;
   }
