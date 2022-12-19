@@ -7,7 +7,8 @@ import React from 'react'
 import client from '../client'
 import Layout from '../components/Layout'
 import RenderSections from '../components/RenderSections'
-import {getSlugVariations, slugParamToPath} from '../utils/urls'
+import { getSlugVariations, slugParamToPath } from '../utils/urls'
+
 
 const pageFragment = groq`
 ...,
